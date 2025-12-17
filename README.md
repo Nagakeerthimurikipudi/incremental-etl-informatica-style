@@ -26,7 +26,6 @@ Source systems send periodic data updates that need to be integrated into a cent
 - Full load option supported for initial and recovery scenarios
 
 ## Error Handling & Monitoring
-- Reject handling implemented for invalid records
 - Session logs monitored for failures
 - Designed to integrate with enterprise schedulers such as Control-M
 
