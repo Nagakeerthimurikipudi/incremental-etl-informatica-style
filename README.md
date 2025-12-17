@@ -1,26 +1,34 @@
-# Incremental ETL – Informatica Style Implementation
+# Informatica Incremental ETL Framework
 
-## Overview
-This project demonstrates how incremental ETL loads are implemented
-using Informatica PowerCenter concepts such as Lookup and Update Strategy.
-The logic is implemented using SQL to simulate real-world ETL behavior.
+This repository demonstrates a production-style ETL design implemented using Informatica PowerCenter concepts. The project focuses on incremental and full-load data processing commonly used in enterprise data integration environments.
 
 ## Use Case
-- Source system sends full data
-- Target table already contains historical records
-- Only new or changed records should be inserted or updated
+Source systems send periodic data updates that need to be integrated into a centralized target database. The ETL logic ensures:
+- Only new or changed records are processed
+- Duplicate data is avoided
+- Data integrity is maintained across runs
 
-## ETL Logic
-1. Identify business key (employee_id)
-2. Compare source and target records using lookup logic
-3. Insert new records
-4. Update existing records when data changes
+## ETL Design Overview
+- Source: Relational database tables
+- Target: Relational database tables
+- ETL Tool: Informatica PowerCenter
+- Load Type: Incremental and Full Load
 
-## Technologies Used
-- SQL
-- Relational Databases (Oracle / PostgreSQL concepts)
-- Informatica-style ETL logic
+## Key ETL Logic
+- Lookup transformation used to compare incoming records with existing target data
+- Update Strategy used to determine INSERT or UPDATE actions
+- Expression transformation for data validation and business rules
+- Parameterized mappings to support reusability across environments
+
+## Incremental Load Strategy
+- Business keys and last updated timestamps are used to identify new or changed records
+- Existing records are updated, and new records are inserted
+- Full load option supported for initial and recovery scenarios
+
+## Error Handling & Monitoring
+- Reject handling implemented for invalid records
+- Session logs monitored for failures
+- Designed to integrate with enterprise schedulers such as Control-M
 
 ## Notes
-This project is designed to demonstrate ETL concepts and logic
-and does not use production data.
+This project represents a simplified version of enterprise ETL logic implemented for demonstration and learning purposes.
